@@ -4,8 +4,6 @@ import { bufferCount, filter, map, take } from 'rxjs/operators';
 import { ButtonsSuite } from './_buttons-suite/buttons-suite';
 import { TimeFormater } from './_time-formater/time-formater';
 
-const ticker = interval(1000);
-
 const Stopwatch = () => {
     const [seconds, setSeconds] = useState(0);
     const [isStoped, setIsStoped] = useState(true);
@@ -23,7 +21,7 @@ const Stopwatch = () => {
     );
 
     useEffect(() => {
-        const subscription = ticker.subscribe(() => {
+        const subscription = interval(1000).subscribe(() => {
             if (!isStoped) {
                 setSeconds(val => val + 1);
             }
